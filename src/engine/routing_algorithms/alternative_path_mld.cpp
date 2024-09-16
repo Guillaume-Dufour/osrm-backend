@@ -664,6 +664,8 @@ makeCandidateVias(SearchEngineData<Algorithm> &search_engine_data,
     Heap &forward_heap = *search_engine_data.forward_heap_1;
     Heap &reverse_heap = *search_engine_data.reverse_heap_1;
 
+    std::cout << endpoint_candidates.source_phantoms.size() << " " << endpoint_candidates.target_phantoms.size() << std::endl;
+
     insertNodesInHeaps(forward_heap, reverse_heap, endpoint_candidates);
     if (forward_heap.Empty() || reverse_heap.Empty())
     {

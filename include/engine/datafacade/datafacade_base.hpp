@@ -72,6 +72,8 @@ class BaseDataFacade
 
     virtual std::string GetTimestamp() const = 0;
 
+    virtual void DeleteNode(const NodeID edge_based_node_id) = 0;
+
     // node and edge information access
     virtual util::Coordinate GetCoordinateOfNode(const NodeID node_based_node_id) const = 0;
 

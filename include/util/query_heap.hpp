@@ -235,7 +235,22 @@ class QueryHeap
         {
             return false;
         }
-        return inserted_nodes[index].node == node;
+        bool is_inserted = inserted_nodes[index].node == node;
+        return is_inserted;
+    }
+
+    void Delete(NodeID node)
+    {
+        const auto index = node_index.peek_index(node);
+        if (index >= static_cast<decltype(index)>(inserted_nodes.size()) ||
+            inserted_nodes[index].node != node)
+        {
+            return;
+        }
+
+        auto &reference = inserted_nodes[index];
+        heap.erase(reference.handle);
+        reference.handle = heap.s_handle_from_iterator(heap.end());
     }
 
     HeapNode *GetHeapNodeIfWasInserted(const NodeID node)

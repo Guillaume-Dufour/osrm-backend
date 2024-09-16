@@ -279,6 +279,13 @@ class ContiguousInternalMemoryDataFacadeBase : public BaseDataFacade
         InitializeInternalPointers(allocator->GetIndex(), metric_name, exclude_index);
     }
 
+    void DeleteNode(const NodeID edge_based_node_id) override final {
+        std::vector<util::Coordinate> temp_vector(m_coordinate_list.begin(), m_coordinate_list.end());
+
+        temp_vector.erase(temp_vector.begin() + edge_based_node_id);
+        m_coordinate_list = util::vector_view<util::Coordinate>(temp_vector.data(), temp_vector.size());
+    }
+
     // node and edge information access
     util::Coordinate GetCoordinateOfNode(const NodeID node_based_node_id) const override final
     {
